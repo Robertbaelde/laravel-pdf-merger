@@ -5,6 +5,7 @@ namespace GrofGraf\LaravelPDFMerger;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class PDFMerger {
     /**
@@ -117,7 +118,7 @@ class PDFMerger {
      * @return void
      */
     public function addPDFString($string, $pages = 'all', $orientation = null){
-        $filePath = storage_path('tmp/'.str_random(16).'.pdf');
+        $filePath = storage_path('tmp/'.Str::random(16).'.pdf');
         $this->filesystem->put($filePath, $string);
         $this->tmpFiles->push($filePath);
         return $this->addPathToPDF($filePath, $pages, $orientation);
