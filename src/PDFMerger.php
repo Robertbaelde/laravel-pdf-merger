@@ -209,7 +209,7 @@ class PDFMerger {
       preg_match_all('!\d+!', $first_line, $matches);
       $pdfversion = implode('.', $matches[0]);
       if($pdfversion > "1.4"){
-        $newFilePath = storage_path('tmp/' . str_random(16) . '.pdf');
+        $newFilePath = storage_path('tmp/' . Str::random(16) . '.pdf');
         //execute shell script that converts PDF to correct version and saves it to tmp folder
         shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'. $newFilePath . '" "' . $filePath . '"');
         $this->tmpFiles->push($newFilePath);
